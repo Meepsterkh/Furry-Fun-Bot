@@ -76,11 +76,7 @@ async def on_message(message):
 
     if message.content.startswith("|joke"):
         await extra.dadJoke()
-
-    if message.content.startswith("|add"):
-        await client.add_roles(message.author, Nsfw)
-
-
+        
 
 
 client.run(str(os.environ.get('BOT_TOKEN')))
