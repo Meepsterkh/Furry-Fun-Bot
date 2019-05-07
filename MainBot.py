@@ -4,6 +4,7 @@ from discord import Game
 import discord
 import random
 import requests
+import os
 
 
 # def main settings
