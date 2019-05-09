@@ -9,7 +9,6 @@ import os
 
 # def main settings
 prefix = ("|")
-token = 'NTMwODc3MzUwMzM0OTU1NTIx.XNN5fA.gc5Setp3m182NmUO7flcdnTJAnY'
 
 # change main settings
 client = Bot(command_prefix=prefix)
@@ -31,27 +30,33 @@ class messageFun():
     def __init__(self, message):
         self.message = message
 
+    #url decrease
     def url(self, strings : str, additive = None):
         url = strings + additive
         response = requests.get(url)
         return(response.json())
 
-
+    #Sheri Furry Api
     async def sheriBot(self, yiffType):
         value = self.url("https://sheri.bot/api/v2/", yiffType)["url"]
         await client.send_message(self.message.channel, value)
 
+    #Dad joke Api
     async def dadJoke(self):
         value = self.url("https://icanhazdadjoke.com/slack")["attachments"][0]["text"]
         await client.send_message(self.message.channel, value)
 
 
+#Give New Members Roles
 @client.event
 async def on_member_join(member):
+    #Get Roles
     roleMember = discord.utils.get(member.server.roles, name= 'Members')
     roleNsfw = discord.utils.get(member.server.roles, name= 'Nsfw')
+    #Set Roles
     await client.add_roles(member, roleMember)
     await client.add_roles(member, roleNsfw)
+    #Debug.Log Member with Role
     print("Added: " + str(member))
 
 
@@ -59,19 +64,14 @@ async def on_member_join(member):
 async def on_message(message):
     extra = messageFun(message)
 
+    # Debug.Log Text Info
     print(message.author)
     print(message.content)
-
-
-    # await client.send_message()
 
     # bot replying to self stops
     if message.author == client.user:
         return
 
-    # print(message.author)
-    # if message.author == message.author:
-    #     await client.send_message(message.channel, message.content)
 
     #Hello
     if message.content.startswith('|hello'):
@@ -83,12 +83,17 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel, "Welcome to Mcdownald's \n Do you want a phucking \n Beese Churger?")
 
-        
+    #Jokes
     if message.content.startswith("|joke"):
         await extra.dadJoke()
 
+    #Img Post
+    if message.content.startswith("|random"):
+        await extra.sheriBot("mur")
+
     if message.content.startswith("|yiff"):
         await extra.sheriBot("yiff")
+
 
 
 client.run(str(os.environ.get('BOT_TOKEN')))
