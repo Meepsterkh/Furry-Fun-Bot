@@ -31,8 +31,7 @@ class messageFun():
         self.message = message
 
     #url decrease
-    def url(self, strings : str, additive = None):
-        url = strings + additive
+    def url(self, url : str):
         response = requests.get(url)
         return(response.json())
 
