@@ -39,12 +39,12 @@ class messageFun():
     #Sheri Furry Api
     async def sheriBot(self, yiffType):
         value = self.url("https://sheri.bot/api/" + yiffType)["url"]
-        await client.send_message(self.message.channel, value)
+        await client.send_message(self.message.channel, str(value))
 
     #Dad joke Api
     async def dadJoke(self):
         value = self.url("https://icanhazdadjoke.com/slack")["attachments"][0]["text"]
-        await client.send_message(self.message.channel, value)
+        await client.send_message(self.message.channel, str(value))
 
 
 #Give New Members Roles
