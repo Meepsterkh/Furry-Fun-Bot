@@ -38,7 +38,7 @@ class messageFun():
 
     #Sheri Furry Api
     async def sheriBot(self, yiffType):
-        value = self.url("https://sheri.bot/api/", yiffType)["url"]
+        value = self.url("https://sheri.bot/api/" + yiffType)["url"]
         await client.send_message(self.message.channel, value)
 
     #Dad joke Api
