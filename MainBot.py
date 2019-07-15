@@ -87,11 +87,11 @@ async def on_message(message):
         await extra.dadJoke()
 
     #Img Post
-#    if message.content.startswith("|random"):
-#        await extra.sheriBot("mur")
+    if message.content.startswith("|random"):
+        await extra.sheriBot("mur")
 
-#    if message.content.startswith("|yiff"):
-#        await extra.sheriBot("yiff")
+    if message.content.startswith("|yiff"):
+        await extra.sheriBot("yiff")
 
 
 
